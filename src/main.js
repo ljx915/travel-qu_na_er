@@ -5,6 +5,7 @@ import Router from './router/router.js'
 // 以下是新学的
 import './assets/styles/reset.css'
 import './assets/styles/border.css'
+import './assets/styles/iconfont.css'
 import fastClick from 'fastclick'
 
 Vue.config.productionTip = false
