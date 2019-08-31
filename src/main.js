@@ -7,9 +7,13 @@ import './assets/styles/reset.css'
 import './assets/styles/border.css'
 import './assets/styles/iconfont.css'
 import fastClick from 'fastclick'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+// require styles
+import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body);
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 // 这里的路由使用的是router.js，直接把路由模块单独分离
 
