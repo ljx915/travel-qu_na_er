@@ -13,6 +13,7 @@ import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body);
+
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 // 这里的路由使用的是router.js，直接把路由模块单独分离
