@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 // import Home from '../components/Home.vue'
 // @代表src目录
 import Home from '@/components/Home.vue'
-
+import City from '@/components/City.vue'
 
 Vue.use(VueRouter);
 
@@ -12,6 +12,7 @@ export default new VueRouter({
   mode:"history",
   routes: [
     {path:"/",name:"Home",component:Home},
+    {path:"/city",name:"City",component:City}
   ]
 })
 
