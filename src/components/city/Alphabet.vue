@@ -1,12 +1,11 @@
 <template>
   <div class="alphabet"> 
-    <ul class="list">
-      <li class="item">A</li>
-      <li class="item">A</li>
-      <li class="item">A</li>
-      <li class="item">A</li>
-      <li class="item">A</li>
-      <li class="item">A</li>
+    <ul class="list" >
+      <li 
+        class="item" 
+        v-for="(item,key) of cities"
+        v-bind:key="key"
+      >{{key}}</li>
     </ul>
   </div>
 </template>
@@ -15,7 +14,9 @@
 // export default导出一个对象
 export default {
   name: 'CityAlphabet',
-
+  props: {
+    cities: Object
+  }
 }
 </script>
 
