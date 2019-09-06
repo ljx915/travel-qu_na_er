@@ -2,8 +2,15 @@
   <div class="city"> 
     <city-header></city-header>
     <city-search></city-search>
-    <city-list v-bind:cities="cities" v-bind:hot="hotCities"></city-list>
-    <city-alphabet v-bind:cities="cities"></city-alphabet>
+    <city-list 
+      v-bind:cities="cities"
+      v-bind:hot="hotCities"
+      v-bind:letter="letter"
+    ></city-list>
+    <city-alphabet      
+      v-bind:cities="cities"
+      @change="handleLetterChange"
+    ></city-alphabet>
   </div>
 </template>
 
@@ -22,7 +29,8 @@ export default {
   data() {
     return {
       cities: {},
-      hotCities: []
+      hotCities: [],
+      letter: '',
     }
   },
   methods: {
@@ -37,7 +45,11 @@ export default {
             this.hotCities = data.hotCities
           }
         })
-    } 
+    },
+   handleLetterChange (letter) {
+      // console.log(letter)
+      this.letter = letter
+    }
   },
   // created和mounted都行
   mounted() {

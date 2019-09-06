@@ -22,7 +22,8 @@
       <div 
         class="area" 
         v-for="(item,key) of cities" 
-        v-bind:key="key"
+        :key="key"
+        :ref="key"
       >
         <div class="title border-topbottom">{{key}}</div>
         <div 
@@ -44,10 +45,26 @@ export default {
   name: 'CityList',
   props: {
     cities: Object,
-    hot: Array
+    hot: Array,
+    letter: String,
   },
   mounted () {
-    let scroll = new BScroll(this.$refs.wrapper) 
+    // 这个不能写成，
+    // this.scroll = new BScroll() .. ,
+    // bug找了一晚。。。
+    this.scroll = new BScroll(this.$refs.wrapper) 
+  },
+  watch: {
+    letter:function() {
+      // console.log(this.letter)
+      if (this.letter) {
+        // const element = this.$refs[this.letter][0]
+        const element = this.$refs[this.letter.trim()][0]
+
+        // 报错根源
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>
