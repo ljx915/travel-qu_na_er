@@ -12,7 +12,8 @@
         <li 
           class="search-item border-bottom"
           v-for="item of list"
-          v-bind:key="item.id"  
+          v-bind:key="item.id"
+          @click="handleCityClick(item.name)"  
         >{{item.name}}</li>
         <li class="search-item border-bottom" v-show="!list.length">没有找到匹配</li>
       </ul>
@@ -22,6 +23,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import { mapMutations } from 'vuex'
 // export default导出一个对象
 export default {
   name: 'CitySearch',
@@ -59,6 +61,14 @@ export default {
   },
   mounted() {
     this.scroll = new BScroll(this.$refs.search)
+  },
+  methods: {
+    handleCityClick(city) {
+      // this.$store.commit("changeCity",city)
+      this.changeCity(city)
+      this.$router.push("/")
+    },
+    ...mapMutations(["changeCity"])
   }
 }
 </script>

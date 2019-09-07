@@ -5,14 +5,22 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">深圳</div>
+            <div class="button">
+              <!-- 原本:深圳 -->
+              {{this.$store.state.city}}
+            </div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-wrapper" v-for="item of hot" v-bind:key="item.id">
+          <div 
+            class="button-wrapper" 
+            v-for="item of hot" 
+            v-bind:key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <div class="button">
               {{item.name}}
             </div>
@@ -30,6 +38,7 @@
           class="item-list"
           v-for="innerItem of item"
           v-bind:key="innerItem.id"
+          @click="handleCityClick(innerItem.name)"
         >
           <div class="item border-bottom">{{innerItem.name}}</div>
         </div>
@@ -40,6 +49,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import {mapState,mapMutations} from 'vuex'
 // export default导出一个对象
 export default {
   name: 'CityList',
@@ -47,6 +57,11 @@ export default {
     cities: Object,
     hot: Array,
     letter: String,
+  },
+  computed: {
+    ...mapState({
+      currentCity: 'City'
+    })
   },
   mounted () {
     // 这个不能写成，
@@ -65,7 +80,15 @@ export default {
         this.scroll.scrollToElement(element)
       }
     }
-  }
+  },
+  methods: {
+    handleCityClick(city) {
+      // this.$store.commit("changeCity",city)
+      this.changeCity(city)
+      this.$router.push("/")
+    },
+    ...mapMutations(["changeCity"])
+  },
 }
 </script>
 

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 // import VueRouter from 'vue-router'
 import Router from './router/router.js'
+import Store from './store' //引入store,模块化使得能够自动寻找store文件夹下的index.js
 // 以下是新学的
 import './assets/styles/reset.css'
 import './assets/styles/border.css'
@@ -33,5 +34,6 @@ new Vue({
   // 如果直接写Router，相当于Router：Router，这个好像是对象解构的内容。。自己复习下
   // {a,b} = {1,2} ==>   {a:a,b:b} = {a:1,b:2}
   // 除非引入的模块组件name为router ，而router关键字为路由对象关键字，否则不能省略关键字
-  router:Router
+  router:Router,
+  store:Store
 }).$mount('#app')
