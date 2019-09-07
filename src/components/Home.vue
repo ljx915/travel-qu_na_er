@@ -16,19 +16,23 @@ import HomeSwiper from './home/Swiper.vue'
 import HomeIcons from './home/Icons.vue'
 import HomeRecommend from './home/Recommend.vue'
 import HomeWeekend from './home/Weekend.vue'
-import axios from 'axios';
+import axios from 'axios'
+import { mapState } from 'vuex'
 // export default导出一个对象
 export default {
   name: 'Home',
   data () {
     return {
       // city可有可无，index.json无city
-      city: '', 
+      lastCity: '', 
       swiperList: [],
       iconList: [],
       recommendList: [],
       weekendList: []
     }
+  },
+  computed:{
+    ...mapState(['city'])
   },
   components:{
     HomeHeader,
@@ -40,7 +44,7 @@ export default {
   methods: {
     // 定义getHomeInfo
     getHomeInfo() {
-      axios.get('./api/index.json')
+      axios.get('./api/index.json?city=' + this.city )
         .then(res => {
           console.log(res.data.data.city)
           // res.data属性的值赋给res
@@ -62,8 +66,16 @@ export default {
   },
   // 页面挂载好后执行getHomeInfo请求
   mounted() {
+    this.lastCity = this.city
+    // console.log("mounted")
     this.getHomeInfo()
   },
+  activated() {
+    // console.log("avtivated")
+    if (this.lastCity != this.city) {
+      this.getHomeInfo()
+    }
+  }
 }
 </script>
 
