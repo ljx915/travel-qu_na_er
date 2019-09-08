@@ -5,7 +5,13 @@
     <!-- 下面是列表ul，用flex布局 -->
     <!-- 用router-link跳转() -->
     <ul>
-      <li class="item border-bottom" v-for="item of  list" v-bind:key="item.id">
+      <router-link 
+        tag="li"
+        class="item border-bottom" 
+        v-for="item of  list" 
+        v-bind:key="item.id"
+        v-bind:to="'/detail/' + item.id"
+      >
         <div class="item-img">
           <img class="item-img-content" v-bind:src="item.imgUrl" alt="" srcset="">
         </div>
@@ -14,8 +20,7 @@
           <p class="item-desc">{{item.desc}}</p>
           <button class="item-button">查看详情</button>
         </div>
-      </li>
-
+      </router-link>
     </ul>
   </div>
 </template>
