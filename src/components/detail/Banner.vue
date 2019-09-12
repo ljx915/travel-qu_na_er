@@ -26,10 +26,11 @@ export default {
   components: {
     CommonGallery
   },
+  props:{},
   data() {
     return {
       showGallery:false,
-      imgs:["https://img1.qunarzz.com/vs_ceph_vs_tts/32014fe7-4918-4bdc-b361-ce6ffb9bc5bb.jpg_r_1280x840x90_60de9501.jpg",
+       imgs:["https://img1.qunarzz.com/vs_ceph_vs_tts/32014fe7-4918-4bdc-b361-ce6ffb9bc5bb.jpg_r_1280x840x90_60de9501.jpg",
       "https://img1.qunarzz.com/vs_ceph_vs_tts/32014fe7-4918-4bdc-b361-ce6ffb9bc5bb.jpg_r_1280x840x90_60de9501.jpg",
       "https://img1.qunarzz.com/vs_ceph_vs_tts/32014fe7-4918-4bdc-b361-ce6ffb9bc5bb.jpg_r_1280x840x90_60de9501.jpg"]
     }
