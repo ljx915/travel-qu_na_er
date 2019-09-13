@@ -1,6 +1,10 @@
 <template>
   <div class="detail"> 
-    <detail-banner></detail-banner>
+    <detail-banner
+      v-bind:sightName="sightName"
+      v-bind:bannerImg="bannerImg"
+      v-bind:bannerImgs="galleryImgs"
+    ></detail-banner>
     <detail-header></detail-header>
     <div class="content">
       <detail-list 
@@ -14,6 +18,7 @@
 import DetailBanner from './detail/Banner.vue'
 import DetailHeader from './detail/Header.vue'
 import DetailList from './detail/List.vue'
+import axios from 'axios'
 // export default导出一个对象
 import detail from '../../public/mock/detail.json';
 export default {
@@ -25,25 +30,30 @@ export default {
   },
   data () {
     return {
-      list: [{
-        title: '成人票',
-        children: [{
-          title: '成人三馆联票',
-          children: [{
-            title: '成人三馆联票 - 某连锁店销售'
-          }]
-        }, {
-          title: '成人五馆联票'
-        }]
-      }, {
-        title: '学生票'
-      }, {
-        title: '儿童票'
-      }, {
-        title: '特惠票'
-      }]
+      sightName:'',
+      bannerImg:'',
+      galleryImgs:[],
+      list:[]
     }
-  }
+  },
+  methods:{
+    getDetailInfo(){
+      axios.get('/api/detail.json/')
+      .then(res => {
+        res = res.data
+        if (res.ret && res.data) {
+          const data = res.data
+          this.sightName = data.sightName
+          this.bannerImg = data.bannerImg
+          this.galleryImgs = data.galleryImgs
+          this.list = data.categoryList
+        }
+      })
+    }
+  },
+  mounted(){
+    this.getDetailInfo()
+  },
 
 }
 </script>

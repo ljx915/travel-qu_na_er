@@ -15,8 +15,14 @@ export default new VueRouter({
     {path:"/",name:"Home",component:Home},
     {path:"/city",name:"City",component:City},
     {path:"/detail/:id",name:"Detail",component:Detail}
-  ]
+  ],
+  // 每次做路由切换时，让新显示的页面回到最顶部
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0}
+  }
 })
+
+
 
 // 如果这样写
 // 文件名字改成router.js比较好
