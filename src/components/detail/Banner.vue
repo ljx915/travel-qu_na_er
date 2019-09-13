@@ -12,21 +12,25 @@
         </div>
       </div>
     </div>
-    <common-gallery
-      v-bind:imgs="bannerImgs"
-      v-show="showGallery"
-      @close="handleGalleryClose"
-    ></common-gallery>
+    <fade-animation>
+      <common-gallery
+        v-bind:imgs="bannerImgs"
+        v-show="showGallery"
+        @close="handleGalleryClose"
+      ></common-gallery>
+    </fade-animation>
   </div>
 </template>
 
 <script>
 import CommonGallery from '@/common/gallery/Gallery.vue'
+import FadeAnimation from '@/common/fade/FadeAnimation.vue'
 // export default导出一个对象
 export default {
   name: 'DetailBanner',
   components: {
-    CommonGallery
+    CommonGallery,
+    FadeAnimation
   },
   props:{
     sightName: String,
